@@ -81,10 +81,10 @@ bool isValid(int p, int q, int e, int cipher)
     try
     {
         if (p == q || p > q)
-            throw logic_error("Public key is not valid!");
+            throw logic_error("Public key is not valid!\n");
 
         if (Euclid(e, cipher).d != 1)
-            throw runtime_error("Public key is not valid!");
+            throw runtime_error("Public key is not valid!\n");
 
         return true;
     }
@@ -154,14 +154,13 @@ int main()
             cout << decrypted_value << " ";
             final_decoded.push_back(num_char_table.at(decrypted_value));
         }
-
+        final_decoded.push_back('\n');
         cout << endl;
 
         for (unsigned i = 0; i < final_decoded.size(); i++)
         {
             cout << final_decoded[i];
         }
-        cout << endl;
     }
 
     return 0;
