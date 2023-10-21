@@ -14,6 +14,24 @@ struct EuclidResult
     int b;
 };
 
+// The modular function which is going to calculate the modular exponentiation (used from the github link: https://github.com/antew7/RSA/blob/master/RSA.cpp)
+int modular(int base, unsigned int exp, unsigned int mod)
+{
+    int x = 1;
+    int i;
+    int power = base % mod;
+
+    for (i = 0; i < sizeof(int) * 8; i++)
+    {
+        int least_sig_bit = 0x00000001 & (exp >> i);
+        if (least_sig_bit)
+            x = (x * power) % mod;
+        power = (power * power) % mod;
+    }
+
+    return x;
+}
+
 // Function to calculate 'base' raised to the power of 'exponent'.
 long power(int base, int exponent)
 {
@@ -123,15 +141,10 @@ int main()
     cin >> m;
 
     vector<int> numbers;
-    while (cin >> encoded_message)
+    for (int i = 0; i < m; i++)
     {
+        cin >> encoded_message;
         numbers.push_back(encoded_message);
-        char separator;
-        cin.get(separator);
-        if (separator == '\n')
-        {
-            break;
-        }
     }
 
     // Checking if the public key is valid or not.
@@ -150,7 +163,7 @@ int main()
 
         for (unsigned i = 0; i < numbers.size(); i++)
         {
-            long decrypted_value = power(numbers[i], d) % n;
+            long decrypted_value = modular(numbers[i], d, n);
             cout << decrypted_value << " ";
             final_decoded.push_back(num_char_table.at(decrypted_value));
         }
