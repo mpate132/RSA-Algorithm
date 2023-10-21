@@ -81,10 +81,10 @@ bool isValid(int p, int q, int e, int cipher)
     try
     {
         if (p == q || p > q)
-            throw logic_error("Public key is not valid");
+            throw logic_error("Public key is not valid!");
 
         if (Euclid(e, cipher).d != 1)
-            throw runtime_error("Public Key is not valid.");
+            throw runtime_error("Public key is not valid!");
 
         return true;
     }
@@ -119,13 +119,10 @@ int main()
 
     // Taking inputs
     long encoded_message = 0;
-    cout << "Please enter the value of 'e' and 'n' of the public key: " << endl;
     cin >> e >> n;
-    cout << "Please enter the length of the encoded message: " << endl;
     cin >> m;
 
     vector<int> numbers;
-    cout << "Please enter your encoded message: " << endl;
     while (cin >> encoded_message)
     {
         numbers.push_back(encoded_message);
