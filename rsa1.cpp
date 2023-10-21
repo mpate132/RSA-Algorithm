@@ -90,7 +90,7 @@ bool isValid(int p, int q, int e, int cipher)
     }
     catch (const std::exception &e)
     {
-        cout << e.what() << endl;
+        cout << e.what();
         return false;
     }
 }
@@ -154,14 +154,12 @@ int main()
             cout << decrypted_value << " ";
             final_decoded.push_back(num_char_table.at(decrypted_value));
         }
-
         cout << endl;
 
         for (unsigned i = 0; i < final_decoded.size(); i++)
         {
             cout << final_decoded[i];
         }
-        cout << endl;
     }
 
     return 0;
